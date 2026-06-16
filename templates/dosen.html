@@ -1,0 +1,51 @@
+{% extends "base.html" %}
+
+{% block title %}Daftar Dosen{% endblock %}
+
+{% block content %}
+
+<section class="page-hero">
+  <div class="container">
+    <span class="page-eyebrow">Akademik</span>
+    <h1 class="page-title">Daftar Dosen</h1>
+    <p class="page-subtitle">{{ profil.nama }} · {{ profil.universitas }}</p>
+  </div>
+</section>
+
+<section class="section">
+  <div class="container">
+
+    <div class="section-header">
+      <h2 class="section-title">Tenaga Pengajar</h2>
+      <p class="section-sub">
+        Program studi kami didukung oleh <strong>{{ dosen | length }} dosen</strong>
+        yang berpengalaman di bidangnya masing-masing.
+      </p>
+    </div>
+
+    <div class="dosen-grid">
+      {% for d in dosen %}
+      <div class="dosen-card">
+        <div class="dosen-avatar">
+          <span>{{ d.nama[0] }}</span>
+        </div>
+        <div class="dosen-info">
+          <h3 class="dosen-nama">{{ d.nama }}</h3>
+          <span class="dosen-bidang">{{ d.bidang }}</span>
+          <dl class="dosen-detail">
+            <dt>NIP</dt>
+            <dd><code>{{ d.nip }}</code></dd>
+            <dt>Email</dt>
+            <dd><a href="mailto:{{ d.email }}" class="email-link">{{ d.email }}</a></dd>
+            <dt>Pendidikan</dt>
+            <dd>{{ d.pendidikan }}</dd>
+          </dl>
+        </div>
+      </div>
+      {% endfor %}
+    </div>
+
+  </div>
+</section>
+
+{% endblock %}

@@ -1,0 +1,123 @@
+{% extends "base.html" %}
+
+{% block title %}Daftar Mahasiswa{% endblock %}
+
+{% block content %}
+
+<section class="page-hero">
+  <div class="container">
+    <span class="page-eyebrow">Akademik</span>
+    <h1 class="page-title">Daftar Mahasiswa</h1>
+    <p class="page-subtitle">{{ profil.nama }} · {{ profil.universitas }}</p>
+  </div>
+</section>
+
+<section class="section">
+  <div class="container">
+
+    <div class="section-header">
+      <h2 class="section-title">Data Mahasiswa</h2>
+      <p class="section-sub">
+        Total <strong>{{ mahasiswa | length }} mahasiswa</strong> terdaftar di program studi.
+        Status ditampilkan berdasarkan kondisi akademik masing-masing mahasiswa.
+      </p>
+    </div>
+
+    <!-- Legenda Status -->
+    <div class="legend">
+      <span class="badge badge-aktif">Aktif</span>
+      <span class="badge badge-cuti">Cuti</span>
+      <span class="badge badge-lulus">Lulus</span>
+      <span class="badge badge-do">Drop Out</span>
+    </div>
+
+    <!-- Tabel Mahasiswa -->
+    <div class="table-wrap">
+      <table class="mhs-table">
+        <thead>
+          <tr>
+            <th>No</th>
+            <th>NIM</th>
+            <th>Nama Mahasiswa</th>
+            <th>Angkatan</th>
+            <th>IPK</th>
+            <th>Status</th>
+          </tr>
+        </thead>
+        <tbody>
+          {% for m in mahasiswa %}
+          <tr class="
+            {% if m.status == 'Aktif' %}row-aktif
+            {% elif m.status == 'Cuti' %}row-cuti
+            {% elif m.status == 'Lulus' %}row-lulus
+            {% else %}row-do
+            {% endif %}
+          ">
+            <td class="td-no">{{ loop.index }}</td>
+            <td><code class="nim-code">{{ m.nim }}</code></td>
+            <td class="td-nama">{{ m.nama }}</td>
+            <td>{{ m.angkatan }}</td>
+            <td>
+              {% if m.status == 'Drop Out' %}
+              <span class="ipk-na">—</span>
+              {% else %}
+              <span class="ipk-val
+                {% if m.ipk >= 3.5 %}ipk-high
+                {% elif m.ipk >= 3.0 %}ipk-mid
+                {% else %}ipk-low
+                {% endif %}
+              ">{{ "%.2f"|format(m.ipk) }}</span>
+              {% endif %}
+            </td>
+            <td>
+              {% if m.status == 'Aktif' %}
+              <span class="badge badge-aktif">Aktif</span>
+              {% elif m.status == 'Cuti' %}
+              <span class="badge badge-cuti">Cuti</span>
+              {% elif m.status == 'Lulus' %}
+              <span class="badge badge-lulus">Lulus</span>
+              {% else %}
+              <span class="badge badge-do">Drop Out</span>
+              {% endif %}
+            </td>
+          </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+    </div>
+
+    <!-- Ringkasan Statistik -->
+    <div class="stats-summary">
+      <h3>Ringkasan Status</h3>
+      <div class="summary-grid">
+        {% set ns = namespace(aktif=0, cuti=0, lulus=0, do=0) %}
+        {% for m in mahasiswa %}
+          {% if m.status == 'Aktif' %}{% set ns.aktif = ns.aktif + 1 %}
+          {% elif m.status == 'Cuti' %}{% set ns.cuti = ns.cuti + 1 %}
+          {% elif m.status == 'Lulus' %}{% set ns.lulus = ns.lulus + 1 %}
+          {% else %}{% set ns.do = ns.do + 1 %}
+          {% endif %}
+        {% endfor %}
+        <div class="summary-item">
+          <span class="sum-num aktif-col">{{ ns.aktif }}</span>
+          <span class="sum-label">Aktif</span>
+        </div>
+        <div class="summary-item">
+          <span class="sum-num cuti-col">{{ ns.cuti }}</span>
+          <span class="sum-label">Cuti</span>
+        </div>
+        <div class="summary-item">
+          <span class="sum-num lulus-col">{{ ns.lulus }}</span>
+          <span class="sum-label">Lulus</span>
+        </div>
+        <div class="summary-item">
+          <span class="sum-num do-col">{{ ns.do }}</span>
+          <span class="sum-label">Drop Out</span>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+{% endblock %}

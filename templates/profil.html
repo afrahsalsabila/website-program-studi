@@ -1,0 +1,60 @@
+{% extends "base.html" %} {% block title %}Profil Program Studi{% endblock %} {% block content %}
+
+<section class="page-hero">
+  <div class="container">
+    <span class="page-eyebrow">Tentang Kami</span>
+    <h1 class="page-title">Profil Program Studi</h1>
+    <p class="page-subtitle">{{ profil.nama }} · {{ profil.fakultas }}</p>
+  </div>
+</section>
+
+<section class="section">
+  <div class="container">
+    <!-- Meta info -->
+    <div class="meta-grid">
+      <div class="meta-card">
+        <span class="meta-label">Universitas</span>
+        <span class="meta-val">{{ profil.universitas }}</span>
+      </div>
+      <div class="meta-card">
+        <span class="meta-label">Akreditasi</span>
+        <span class="meta-val accent">{{ profil.akreditasi }}</span>
+      </div>
+      <div class="meta-card">
+        <span class="meta-label">Tahun Berdiri</span>
+        <span class="meta-val">{{ profil.tahun_berdiri }}</span>
+      </div>
+      <div class="meta-card">
+        <span class="meta-label">Fakultas</span>
+        <span class="meta-val">{{ profil.fakultas }}</span>
+      </div>
+    </div>
+
+    <!-- Deskripsi -->
+    <div class="content-block">
+      <h2 class="block-title"><span class="title-marker">01</span> Deskripsi Singkat</h2>
+      <p class="block-text">{{ profil.deskripsi }}</p>
+    </div>
+
+    <!-- Visi -->
+    <div class="content-block visi-block">
+      <h2 class="block-title"><span class="title-marker">02</span> Visi</h2>
+      <blockquote class="visi-quote">{{ profil.visi }}</blockquote>
+    </div>
+
+    <!-- Misi -->
+    <div class="content-block">
+      <h2 class="block-title"><span class="title-marker">03</span> Misi</h2>
+      <ol class="misi-list">
+        {% for item in profil.misi %}
+        <li class="misi-item">
+          <span class="misi-num">{{ loop.index }}</span>
+          <span class="misi-text">{{ item }}</span>
+        </li>
+        {% endfor %}
+      </ol>
+    </div>
+  </div>
+</section>
+
+{% endblock %}

@@ -1,0 +1,87 @@
+{% extends "base.html" %} {% block title %}Home{% endblock %} {% block content %}
+
+<!-- ── HERO ── -->
+<section class="hero">
+  <div class="hero-inner">
+    <span class="hero-eyebrow">{{ profil.universitas }}</span>
+    <h1 class="hero-title">
+      Program Studi<br />
+      <span class="gradient-text">Ilmu Komputer</span>
+    </h1>
+    <p class="hero-subtitle">Mencetak generasi inovator digital yang unggul, adaptif, dan berdaya saing global melalui pendidikan teknologi informasi berkualitas.</p>
+    <div class="hero-cta">
+      <a href="{{ url_for('profil_prodi') }}" class="btn btn-primary">Lihat Profil Prodi</a>
+      <a href="{{ url_for('daftar_mahasiswa') }}" class="btn btn-outline">Data Mahasiswa</a>
+    </div>
+  </div>
+  <div class="hero-visual">
+    <div class="icon-grid">
+      <div class="icon-card ic1"><span class="ic-label">Pemrograman</span></div>
+      <div class="icon-card ic2"><span class="ic-label">Basis Data</span></div>
+      <div class="icon-card ic3"><span class="ic-label">Jaringan</span></div>
+      <div class="icon-card ic4"><span class="ic-label">Keamanan</span></div>
+      <div class="icon-card ic5"><span class="ic-label">Data Sains</span></div>
+      <div class="icon-card ic6"><span class="ic-label">Kec. Buatan</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- ── STATS ── -->
+<section class="stats-bar">
+  <div class="stats-inner">
+    <div class="stat-item">
+      <span class="stat-num">{{ stats.total_dosen }}</span>
+      <span class="stat-label">Tenaga Pengajar</span>
+    </div>
+    <div class="stat-divider"></div>
+    <div class="stat-item">
+      <span class="stat-num">{{ stats.total_mahasiswa }}</span>
+      <span class="stat-label">Total Mahasiswa</span>
+    </div>
+    <div class="stat-divider"></div>
+    <div class="stat-item">
+      <span class="stat-num">{{ stats.total_aktif }}</span>
+      <span class="stat-label">Mahasiswa Aktif</span>
+    </div>
+    <div class="stat-divider"></div>
+    <div class="stat-item">
+      <span class="stat-num">{{ stats.akreditasi }}</span>
+      <span class="stat-label">Akreditasi BAN-PT</span>
+    </div>
+  </div>
+</section>
+
+<!-- ── INFO CARDS ── -->
+<section class="section">
+  <div class="container">
+    <div class="section-header">
+      <h2 class="section-title">Mengapa Ilmu Komputer UBBG?</h2>
+      <p class="section-sub">Keunggulan program studi kami dalam mempersiapkan profesional teknologi masa depan.</p>
+    </div>
+    <div class="card-grid">
+      <div class="info-card">
+        <h3>Kurikulum Relevan</h3>
+        <p>Kurikulum dirancang bersama industri dan diperbarui setiap 4 tahun untuk memenuhi kebutuhan pasar kerja terkini.</p>
+      </div>
+      <div class="info-card">
+        <h3>Laboratorium Modern</h3>
+        <p>Tersedia lab komputer, lab jaringan, lab AI & data science, serta ruang inovasi untuk mendukung penelitian mahasiswa.</p>
+      </div>
+      <div class="info-card">
+        <h3>Kemitraan Industri</h3>
+        <p>Kerjasama aktif dengan 50+ perusahaan teknologi nasional dan internasional untuk magang dan rekrutmen lulusan.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── KONTAK SINGKAT ── -->
+<section class="section section-dark">
+  <div class="container cta-section">
+    <h2>Bergabung Bersama Kami</h2>
+    <p>Wujudkan impianmu menjadi software engineer, data scientist, atau AI specialist bersama Program Studi Ilmu Komputer UBBG.</p>
+    <a href="{{ url_for('profil_prodi') }}" class="btn btn-white">Pelajari Lebih Lanjut →</a>
+  </div>
+</section>
+
+{% endblock %}

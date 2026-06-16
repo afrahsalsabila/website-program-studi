@@ -1,0 +1,39 @@
+<!doctype html>
+<html lang="id">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>{% block title %}Prodi Ilmu Komputer{% endblock %} – UBBG</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Fira+Code:wght@400;500&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}" />
+  </head>
+  <body>
+    <nav class="navbar">
+      <div class="nav-inner">
+        <a href="{{ url_for('home') }}" class="nav-brand">
+          <span class="brand-icon">⬡</span>
+          <span class="brand-text">IK<span class="brand-accent">·</span>UBBG</span>
+        </a>
+        <ul class="nav-links">
+          <li><a href="{{ url_for('home') }}" class="nav-link {% if request.endpoint == 'home' %}active{% endif %}">Home</a></li>
+          <li><a href="{{ url_for('profil_prodi') }}" class="nav-link {% if request.endpoint == 'profil_prodi' %}active{% endif %}">Profil Prodi</a></li>
+          <li><a href="{{ url_for('daftar_dosen') }}" class="nav-link {% if request.endpoint == 'daftar_dosen' %}active{% endif %}">Dosen</a></li>
+          <li><a href="{{ url_for('daftar_mahasiswa') }}" class="nav-link {% if request.endpoint == 'daftar_mahasiswa' %}active{% endif %}">Mahasiswa</a></li>
+          <li><a href="{{ url_for('kontak_prodi') }}" class="nav-link {% if request.endpoint == 'kontak_prodi' %}active{% endif %}">Kontak</a></li>
+        </ul>
+      </div>
+    </nav>
+
+    <main>{% block content %}{% endblock %}</main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        <p class="footer-name">Program Studi Ilmu Komputer</p>
+        <p class="footer-sub">Fakultas Sains, Teknologi, dan Ilmu Kesehatan · Universitas Bina Bangsa Getsempena · Banda Aceh</p>
+        <p class="footer-copy">© 2025 — Dibuat dengan Flask & Jinja2</p>
+      </div>
+    </footer>
+  </body>
+</html>

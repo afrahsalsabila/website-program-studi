@@ -1,0 +1,67 @@
+{% extends "base.html" %} {% block title %}Kontak{% endblock %} {% block content %}
+
+<section class="page-hero">
+  <div class="container">
+    <span class="page-eyebrow">Hubungi Kami</span>
+    <h1 class="page-title">Kontak</h1>
+    <p class="page-subtitle">{{ profil.nama }} · {{ profil.universitas }}</p>
+  </div>
+</section>
+
+<section class="section">
+  <div class="container">
+    <div class="kontak-grid">
+      <div class="kontak-card">
+        <div class="kontak-detail">
+          <span class="kontak-label">Alamat</span>
+          <span class="kontak-val">{{ kontak.alamat }}</span>
+        </div>
+      </div>
+      <div class="kontak-card">
+        <div class="kontak-detail">
+          <span class="kontak-label">Telepon</span>
+          <span class="kontak-val">{{ kontak.telepon }}</span>
+        </div>
+      </div>
+      <div class="kontak-card">
+        <div class="kontak-detail">
+          <span class="kontak-label">Situs Web</span>
+          <a class="kontak-val kontak-link" href="{{ kontak.website }}" target="_blank">{{ kontak.website }}</a>
+        </div>
+      </div>
+      <div class="kontak-card">
+        <div class="kontak-detail">
+          <span class="kontak-label">Email</span>
+          <span class="kontak-val">{{ kontak.email }}</span>
+        </div>
+      </div>
+      <div class="kontak-card">
+        <div class="kontak-detail">
+          <span class="kontak-label">Layanan Pengaduan</span>
+          <a class="kontak-val kontak-link" href="{{ kontak.pengaduan }}" target="_blank">{{ kontak.pengaduan }}</a>
+        </div>
+      </div>
+      <div class="kontak-card">
+        <div class="kontak-detail">
+          <span class="kontak-label">Jam Operasional</span>
+          <span class="kontak-val">{{ kontak.jam_operasional }}</span>
+        </div>
+      </div>
+    </div>
+
+    <h2 class="section-title" style="margin-top: 3rem; margin-bottom: 1.5rem">Media Sosial</h2>
+    <div class="sosmed-grid">
+      {% for s in kontak.sosmed %}
+      <a href="{{ s.url }}" target="_blank" class="sosmed-card">
+        <span class="sosmed-icon">{{ s.icon }}</span>
+        <div>
+          <span class="sosmed-nama">{{ s.nama }}</span>
+          <span class="sosmed-handle">{{ s.handle }}</span>
+        </div>
+      </a>
+      {% endfor %}
+    </div>
+  </div>
+</section>
+
+{% endblock %}
